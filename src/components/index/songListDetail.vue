@@ -9,9 +9,9 @@
                 <span class="playCount">{{playlist.playCount|playCount}}</span>
             </span>
             </div>
-            <div class="songlist-avatar">
+            <div class="songlist-avatar" >
                 <div class="avatar-name">{{playlist.name}}</div>
-                <div class="avatar-description">{{playlist.description.length>60?playlist.description.substring(0,60)+'......':playlist.description}}</div>
+                <div class="avatar-description" v-if="playlist.description">{{playlist.description.length>60?playlist.description.substring(0,60)+'......':playlist.description}}</div>
                 <div class="avatar-user">
                     <div class="user-avatar"
                          :style="`background:url(${userinfo.avatarUrl})no-repeat center/cover;`"></div>
@@ -80,10 +80,8 @@
         computed: {
             ...mapState(['curPlaylistDetail'])
         },
-        created(){
-            this.$nextTick(() => {
+        mounted(){
                 this.getsongList()
-            })
         },
         components:{
             MHead,
